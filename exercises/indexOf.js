@@ -7,11 +7,9 @@ function indexOf(firstString, secondString) {
   while (currentIndex <= (firstLength - secondLength)) {
     var matches = 0;
     for (i = 0; i < secondLength; i++) {
-      console.log(firstString[currentIndex + i], secondString[i])
       if (firstString[currentIndex + i] === secondString[i]) {
         matches += 1;
       } 
-      console.log(matches);
     }
 
     if (matches === secondLength) {
@@ -38,11 +36,9 @@ function lastIndexOf(firstString, secondString) {
   while (currentIndex >= 0) {
     var matches = 0;
     for (i = 0; i < secondLength; i++) {
-      console.log(firstString[currentIndex + i], secondString[i])
       if (firstString[currentIndex + i] === secondString[i]) {
         matches += 1;
       } 
-      console.log(matches);
     }
 
     if (matches === secondLength) {
