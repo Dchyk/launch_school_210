@@ -5,7 +5,7 @@ function rot13(str) {
   for (var i = 0; i < str.length; i++) {
     currentCharCode = str.charCodeAt(i);
 
-    if (isValidChar(currentCharCode)) {
+    if (isEnglishChar(currentCharCode)) {
       // rotate and encode the character
       encodedString += rotatedChar(currentCharCode);
     } else {
@@ -17,7 +17,7 @@ function rot13(str) {
   return encodedString;
 }
 
-function isValidChar(charCode) {
+function isEnglishChar(charCode) {
   // Return true if the unicode value of charCode is an English character
   return (charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122);
 }
