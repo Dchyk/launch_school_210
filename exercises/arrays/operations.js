@@ -146,3 +146,148 @@ function arraysEqual(array1, array2) {
   
   return true;
 }
+
+// First element
+
+function firstElementOf(arr) {
+  return arr[0];
+}
+
+// Last element 
+
+function lastElementOf(arr) {
+  return arr[arr.length - 1];
+}
+
+// nth element
+
+function nthElementOf(arr, index) {
+  return arr[index];
+}
+
+// firstNof
+
+function firstNOf(arr, count) {
+  var subArray = []
+
+  for (var i = 0; subArray.length < count; i++) {
+    subArray.push(arr[i]);
+  }
+
+  return subArray;
+}
+
+function firstNOf(arr, count) {
+  return arr.slice(0, count);
+}
+
+// lastNOf
+
+function lastNOf(arr, count) {
+  if (count > arr.length) {
+    count = arr.length;
+  }
+  return arr.slice(arr.length - count)
+}
+
+// endsOf
+
+function endsOf(beginningArr, endingArr) {
+  return [beginningArr[0], endingArr[endingArr.length - 1]];
+}
+
+//oddElementsOf
+
+function oddElementsOf(arr) {
+  var odds = [];
+
+  for (var i = 0; i < arr.length; i++) {
+    if (i % 2 !== 0) {
+      odds.push(arr[i]);
+    } 
+  }
+
+  return odds;
+}
+
+// combinedArray
+
+function combinedArray(even, odd) {
+  var combined = [];
+  var len = even.length;
+
+  for (var i = 0; i < len; i++) {
+    combined.push(even[i]);
+    combined.push(odd[i]);
+  }
+
+  return combined;
+}
+
+// all reversed 
+
+function combinedReversed(array) {
+  var combined = [];
+
+  for (var i = 0; i < array.length; i++) {
+    combined.push(array[i]);
+  }
+
+  var reversed = array.reverse();
+
+  for (var i = 0; i < reversed.length; i++) {
+    combined.push(reversed[i]);
+  }
+
+  return combined;
+}
+
+// array sort
+
+function compare(a, b) {
+  if (a < b) {
+    return -1;
+  }
+}
+
+function sortDescending(arr) {
+  var sortedArr = Array.from(arr);
+
+  return sortedArr.sort(function(a, b) {
+    return b - a;
+  });
+}
+
+// matrixSums
+
+function matrixSums(arr) {
+  var sums = [];
+  var thisSum = 0;
+
+  for (var i = 0; i < arr.length; i++) {
+    for (var j = 0; j < arr[i].length; j++) {
+      thisSum += arr[i][j];
+    }
+    sums.push(thisSum);
+    thisSum = 0;
+  }
+
+  return sums;
+}
+
+// uniqueElements 
+
+function uniqueElements(arr) {
+  var uniques = [];
+
+  for (var i = 0; i < arr.length; i++) {
+    if (!uniques.includes(arr[i])) {
+      uniques.push(arr[i]);
+    }
+  }
+
+  return uniques;
+}
+
+// Find Missing Numbers
+
