@@ -29,11 +29,21 @@ function integerToString(number) {
   }
 
   for (power = tensInNumber - 1; power >= 0; power--) {
-    multiplier = Math.floor(number / base**power);
+    multiplier = Math.floor(number / base ** power);
     stringNumbers.push(numbers[multiplier]);
-    number = number % base**power;
+    number = number % base ** power;
 
   }
 
   return stringNumbers.join('');
+}
+
+function signedIntegerToString(num) {
+  if (num < 0) {
+    return '-' + integerToString(Math.abs(num));
+  } else if (num > 0) {
+    return '+' + integerToString(num);
+  } else {
+    return '0';
+  }
 }
