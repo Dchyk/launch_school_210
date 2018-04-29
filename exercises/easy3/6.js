@@ -1,23 +1,24 @@
-function runningTotal(){
+function runningTotal(arr) {
   var totals = [];
   var i;
-  var total = 0;
+  
+  if (arr.length < 2) {
+    return arr;
+  } else {
+    // start with the first element in the input array
+    totals[0] = arr[0];
+  }
 
-  for (i = 0; i < arguments.length; i++) {
-    totals.push(arguments[i] + total);
-    total = totals[i];
-    console.log(total);
+  // then start with the second element in the input array
+  // and calculate them
+  for (i = 1; i < arr.length; i += 1) {
+    totals[i] = arr[i] + totals[i-1];
   }
 
   return totals;
 }
 
-function runningTotal(){
-  if (arguments.length < 2) {
-    return arguments;
-  }
 
-  var totals = [];
-  var i;
-  
-}
+
+
+
