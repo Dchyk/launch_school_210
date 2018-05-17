@@ -74,7 +74,7 @@ getBooksTitle(books);
 
 function myReduce(array, func, initial) {
   var accumulator;
-  var startingIndex = 0;
+  var startingIndex;
   var i;
 
   if (initial === undefined) {
