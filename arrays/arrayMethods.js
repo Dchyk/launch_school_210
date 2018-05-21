@@ -91,3 +91,22 @@ function myReduce(array, func, initial) {
 
   return accumulator;
 }
+
+
+// Every
+
+function myOwnEvery(array, func) {
+  array.forEach( function(element) {
+    if (!func(element)) {
+      return false;
+    }
+  })
+
+  return true;
+}
+
+var isAString = function (value) {
+  return typeof value === 'string';
+};
+
+myOwnEvery(['a', 'a234', '1abc'], isAString); // returns true
