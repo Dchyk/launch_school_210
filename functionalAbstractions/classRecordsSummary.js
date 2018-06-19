@@ -46,7 +46,9 @@ function totalScore(student, typeOfScore) {
 }
 
 function averageExamScore(student) {
-  return totalScore(student, 'exams') / student.scores.exams.length;
+  var average = totalScore(student, 'exams') / student.scores.exams.length;
+
+  return average.toFixed(1);
 }
 
 function totalExerciseScore(student) {
