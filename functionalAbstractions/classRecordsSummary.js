@@ -5,7 +5,6 @@ var NUMBER_OF_EXAMS = 4;
 function generateClassRecordSummary(studentScores) {
   var summary = {
     studentGrades: [],
-    exams: [],
   }
   var numericalGrade;
   var examGrades;
