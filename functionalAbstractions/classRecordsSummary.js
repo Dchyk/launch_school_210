@@ -45,11 +45,7 @@ function examData(studentScores) {
 }
 
 function averageExamScore(examScores) {
-  var total = examScores.reduce( function(a, b) {
-      return a + b;
-  }); 
-  
-  var average = total / examScores.length;
+  var average = totalScore(examScores) / examScores.length;
 
   return average.toFixed(1);
 }
