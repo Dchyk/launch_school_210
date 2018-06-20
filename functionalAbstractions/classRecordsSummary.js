@@ -1,3 +1,113 @@
+var EXAM_WEIGHT     = 0.65;
+var EXERCISE_WEIGHT = 0.35;
+var NUMBER_OF_EXAMS = 4;
+
+function generateClassRecordSummary(studentScores) {
+  var summary = {
+    studentGrades: [],
+    exams: [],
+  }
+  var numericalGrade;
+  var examGrades;
+  var students = Object.keys(studentScores);
+
+  students.forEach( function(student) {
+    numericalGrade = weightedScore(studentScores[student]);
+    summary.studentGrades.push(formattedLetterGrade(numericalGrade));
+  })
+
+  summary.exams = examData(studentScores);
+
+  return summary;
+}
+
+function examData(studentScores) {
+  var students = Object.values(studentScores);
+  var currentExamScores = [];
+  var examData = [];
+  var i;
+  
+  for (i = 0; i < NUMBER_OF_EXAMS; i += 1) {
+    students.forEach( function(studentData) {
+      currentExamScores.push(studentData.scores.exams[i]);
+    });
+
+    examData.push({
+      average: averageExamScore(currentExamScores),
+      minimum: minimumScore(currentExamScores),
+      maximum: maximumScore(currentExamScores),
+    });
+
+    // Reset the temporary exam scores array
+    currentExamScores = [];
+  }
+
+  return examData;
+}
+
+function averageExamScore(examScores) {
+  var total = examScores.reduce( function(a, b) {
+      return a + b;
+  }); 
+  
+  var average = total / examScores.length;
+
+  return average.toFixed(1);
+}
+
+function totalScore(scores) {
+  return scores.reduce( function (score1, score2) {
+    return score1 + score2;
+  });
+}
+
+function minimumScore(scores) {
+  var sortedAscending = scores.sort( function(a, b) { 
+    return a > b;
+  });
+
+  return sortedAscending[0];
+}
+
+function maximumScore(scores) {
+  var sortedDescending = scores.sort( function(a, b) { 
+    return a < b;
+  });
+
+  return sortedDescending[0];
+}
+
+function weightedScore(student) {
+  var weightedScore = averageExamScore(student.scores.exams) * EXAM_WEIGHT + totalScore(student.scores.exercises) * EXERCISE_WEIGHT;
+
+  return Math.round(weightedScore);
+}
+
+function formattedLetterGrade(grade) {
+  switch (true) {
+    case (grade >= 93):
+      return String(grade) + ' (A)';
+      break;
+    case (grade <= 92 && grade >= 85):
+      return String(grade) + ' (B)';
+      break;
+    case (grade <= 84 && grade >= 77):
+      return String(grade) + ' (C)';
+      break;
+    case (grade <= 76 && grade >= 69):
+      return String(grade) + ' (D)';
+      break;
+    case (grade <= 68 && grade >= 60):
+      return String(grade) + ' (E)';
+      break;
+    default:
+      return String(grade) + ' (F)';
+      break;
+  }
+}
+
+// Test data
+
 var studentScores = {
   student1: {
     id: 123456789,
@@ -35,97 +145,6 @@ var studentScores = {
     },
   },
 };
-
-var EXAM_WEIGHT     = 0.65;
-var EXERCISE_WEIGHT = 0.35;
-
-function totalScore(student, typeOfScore) {
-  return student.scores[typeOfScore].reduce( function (score1, score2) {
-    return score1 + score2;
-  });
-}
-
-function averageExamScore(student) {
-  var average = totalScore(student, 'exams') / student.scores.exams.length;
-
-  return average.toFixed(1);
-}
-
-function totalExerciseScore(student) {
-  return totalScore(student, 'exercises');
-}
-
-function weightedScore(student) {
-  var weightedScore = averageExamScore(student) * EXAM_WEIGHT + totalExerciseScore(student) * EXERCISE_WEIGHT;
-
-  return Math.round(weightedScore);
-}
-
-function formatLetterGrade(grade) {
-  switch (true) {
-    case (grade >= 93):
-      return String(grade) + ' (A)';
-      break;
-    case (grade <= 92 && grade >= 85):
-      return String(grade) + ' (B)';
-      break;
-    case (grade <= 84 && grade >= 77):
-      return String(grade) + ' (C)';
-      break;
-    case (grade <= 76 && grade >= 69):
-      return String(grade) + ' (D)';
-      break;
-    case (grade <= 68 && grade >= 60):
-      return String(grade) + ' (E)';
-      break;
-    default:
-      return String(grade) + ' (F)';
-      break;
-  }
-}
-
-function findMinimumGrade(grades) {
-  var sortedAscending = grades.sort( function(a, b) { 
-    return a > b;
-  });
-
-  return sortedAscending[0];
-}
-
-function findMaximumGrade(grades) {
-  var sortedDescending = grades.sort( function(a, b) { 
-    return a < b;
-  });
-
-  return sortedDescending[0];
-}
-
-function generateClassRecordSummary(allScores) {
-  var summary = {
-    studentGrades: [],
-    exams: [],
-  }
-  var numericalGrade;
-  var examGrades;
-  var students = Object.keys(allScores);
-
-  students.forEach( function(student) {
-    numericalGrade = weightedScore(allScores[student]);
-    summary.studentGrades.push(formatLetterGrade(numericalGrade));
-
-    examGrades = allScores[student].scores.exams;
-
-    summary.exams.push(
-      {
-        average: averageExamScore(allScores[student]),
-        minimum: findMinimumGrade(examGrades),
-        maximum: findMaximumGrade(examGrades),
-      }
-    );
-  })
-
-  return summary;
-}
 
 generateClassRecordSummary(studentScores);
 
