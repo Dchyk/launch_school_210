@@ -1,5 +1,5 @@
 function longestSentence(text) {
-  var sentences = text.split(/[.!?]\s/g);
+  var sentences = text.match(/[a-z]+\s?(,|\w|\s|-)+\b(.)/gi);
 
   var sentenceData = sentences.map(function(sentence) { 
     return {
