@@ -7,7 +7,7 @@ function searchWord(word, text) {
 // Further exploration
 
 function searchWord(word, text) {
-  var reg = '\\b' + word + '\b'
+  var reg = '\\b' + word + '\\b'
   var regex = new RegExp(reg, 'gi');
   var matches = text.match(regex);
 
