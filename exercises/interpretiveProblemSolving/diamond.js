@@ -54,7 +54,7 @@ function diamond(rows) {
   var i;
   var currentIndex = 0;
 
-  for (i = 1; i < rows; i += 1) {
+  for (i = 1; i <= rows; i += 1) {
     computedRows.push([]);
   }
 
@@ -67,11 +67,13 @@ function diamond(rows) {
       computedRows[currentIndex].push('*');
     }
 
-    whitespace += 1;
+    whitespace -= 1;
     currentIndex += 1;
   }
 
-  for (stars = rows - 1; stars >= 1; stars -= 1) {
+  whitespace = 1;
+
+  for (stars = rows - 2; stars >= 1; stars -= 2) {
 
     for (i = 1; i <= whitespace; i+= 1) {
       computedRows[currentIndex].push(' ');
@@ -86,6 +88,6 @@ function diamond(rows) {
   }
 
   computedRows.forEach(function(row) {
-    console.log(row.join(' '));
+    console.log(row.join(''));
   });
 }
