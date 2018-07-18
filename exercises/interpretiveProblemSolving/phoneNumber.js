@@ -64,9 +64,9 @@ function phoneNumber(number) {
 
   if (cleanedNumber.length > 11 || cleanedNumber.length < 10) {
     return '0000000000';
-  } else if (cleanedNumber.length === 11 && cleanedNumber[0] === 1) {
-    return cleanderNumber.slice(1);
-  } else if (cleanedNumber.length === 11 && cleanedNumber[0] !== 1){
+  } else if (cleanedNumber.length === 11 && cleanedNumber[0] === '1') {
+    return cleanedNumber.slice(1);
+  } else if (cleanedNumber.length === 11 && cleanedNumber[0] !== '1'){
     return '0000000000';
   } else {
     return cleanedNumber;
