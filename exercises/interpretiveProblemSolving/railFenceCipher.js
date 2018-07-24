@@ -81,11 +81,6 @@ function encodeMessage(message, numberOfRails) {
 
     char += 1;
 
-    console.log('direction:', direction);
-    console.log('char:', char);
-    console.log('rail:', rail);
-    console.log('rails:', rails)
-
     if (rail < highestRail && rail > 0) {
       if (direction === 'down') {
         rail += 1;
@@ -99,8 +94,6 @@ function encodeMessage(message, numberOfRails) {
       direction = 'up'
       rail -= 1;
     }
-
-    
   }
 
   encodedMessage = rails.join('').replace(/,/g, '');
