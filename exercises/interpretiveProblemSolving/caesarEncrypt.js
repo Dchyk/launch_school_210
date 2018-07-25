@@ -1,15 +1,15 @@
-Write a function that implements the Caesar Cipher. 
-The Caesar Cipher is one of the earliest and simplest ways to encrypt plaintext so that a message can be transmitted securely. 
-It is a substitution cipher in which each letter in a plaintext is substituted by the letter located a given number of positions 
-away in the alphabet. 
-For example, if the letter 'A' is right-shifted by 3 positions, it will be substituted with the letter 'D'. 
-This shift value is often referred to as the key. The "encrypted plaintext" (ciphertext) can be decoded using this key value.
+// Write a function that implements the Caesar Cipher. 
+// The Caesar Cipher is one of the earliest and simplest ways to encrypt plaintext so that a message can be transmitted securely. 
+// It is a substitution cipher in which each letter in a plaintext is substituted by the letter located a given number of positions 
+// away in the alphabet. 
+// For example, if the letter 'A' is right-shifted by 3 positions, it will be substituted with the letter 'D'. 
+// This shift value is often referred to as the key. The "encrypted plaintext" (ciphertext) can be decoded using this key value.
 
-The Caesar Cipher only encrypts letters (including both lower and upper case). Any other character is left as is. 
-The substituted letters are in the same letter case as the original letter. 
-If the key value for shifting exceeds the length of the alphabet, it wraps around from the beginning.
+// The Caesar Cipher only encrypts letters (including both lower and upper case). Any other character is left as is. 
+// The substituted letters are in the same letter case as the original letter. 
+// If the key value for shifting exceeds the length of the alphabet, it wraps around from the beginning.
 
-Examples:
+// Examples:
 
 // simple shift
 caesarEncrypt('A', 0);       // "A"
