@@ -49,6 +49,13 @@
 // ..L.O...L.
 // ...L.....D // HOEWRLOLLD
 
+// 5
+// H.......R
+// .E.....O.L
+// ..L...W...D
+// ...L.O
+// ....L
+
 console.log(encodeMessage('Hello world'), 1) // HELLOWORLD
 console.log(encodeMessage('Hello world'), 2) // HLOOLELWRD
 console.log(encodeMessage('Hello world'), 3) // HELLOWORLD
