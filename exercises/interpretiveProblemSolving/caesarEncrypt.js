@@ -49,19 +49,61 @@ caesarEncrypt('There are, as you can see, many punctuations. Right?; Wrong?', 2)
 // - shiftedChar(char, positions) - returns the char at char.charCodeAt(0) + positions
 // - isUpperCase(letter), isLowerCase(letter)
 
+// ABCDEFGHIJKLMNOPQRSTUVWXYZ
+                          
+// // If the number of positions to move takes you over the limit, then wrap back around
+// // caesarEncrypt('y', 5); // d
+// // y's charCode is 121. 121 + 5 = 126. Since 122 is the highest, we need to loop around. So we subtract 122 from 126, and
+// // are left with 4. So we then add 4 to the lowest letter code, 97, and get 101
+
+// 121 + 5 = 126
+// 126 - 122 = 4
+
+// caesarEncrypt('a', 47) // 'v'
+
+// 97 + 47 = 144
+// 144 - 122 = 22
+// 96 + 22 = 118 // 'v'
+
+// caesarEncrypt('a', 987)
+// 97 + 987 = 1084
+// 1084 - 122 = 108 // "l"
+
+// while (code >= 122) {
+//   code -= 122;  
+// } // Or just use code % 122
+// This is important for mental models... if what I want to do is loop through some number, subtracting
+// the same amount on each iteration until the number N is less than or equal to some other number M,
+// applying N % M will return the right value in much more direct way
+
+function caesarEncrypt(message, shift) {
+  return message.split('').map(function(char) {
+    return (isLetter(char)) ? shiftedChar(char, shift) : char;
+  }).join('');
+}
+
 function isLetter(element) {
   return /[a-z]/i.test(element);
 }
 
 function shiftedChar(char, positionsToShift) {
-  var charPosition = char.charCodeAt(0);
+  var lowest;
+  var highest;
+  var shiftedPosition = char.charCodeAt(0) + positionsToShift;
 
   if (isUpperCase(char)) {
-
+    lowest = 65;
+    highest = 90;
+  } else if (isLowerCase(char)) {
+    lowest = 97;
+    highest = 122;
   }
-  
 
-  return String.fromCharCode(char.charCodeAt(0) + positionsToShift);
+  if (shiftedPosition > highest) {
+    shiftedPosition = (lowest - 1) + (shiftedPosition % highest);
+  }
+
+  return String.fromCharCode(shiftedPosition);
 }
 
 function isUpperCase(letter) {
