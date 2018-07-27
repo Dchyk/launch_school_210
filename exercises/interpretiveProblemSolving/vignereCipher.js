@@ -34,19 +34,52 @@
 // 'Testing', 'Hi'
 // Te st in g
 // Hi Hi Hi H    8, 9
-// Bn ar qw o // Bnarqwo
+// Bn ar qw o // Bnacqwo
 
 console.log(vignereCipher('Hello World', 'Bye')); // Jdqnn bqqqf
 console.log(vignereCipher('Bye', 'Bye'));         // Dxj
-console.log(vignereCipher('Testing', 'Hi'));      // Bnarqwo
+console.log(vignereCipher('Testing', 'Hi'));      // Bnacqwo
 
+// Loop through the input string, one character at a time
+// For each character, test if it is a letter
+// If it is not a letter, skip it
+// If it is a letter, apply the caesarCipher using the current letter in the keyword's value as the number
+// of positions to shift. 
+// After each letter is shifted, move to the next letter in the keyword. 
+// When the last letter in the keyword is reached, go back to 
+// - intialize keyword index at 0;
+// - add 1 on each iteration
+// - when keyword index is === keyword.length - 1, reset the counter to 0
 
-// alphabet
-var alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
+function vignereCipher(message, keyword) {
+  var encrypted = '';
+  var messageLetters = message.split('');
+  var keywordLength = keyword.length - 1;
+  var keywordIndex = 0;
+
+  messageLetters.forEach(function(char) {
+    if (isLetter(char)) {
+      encrypted += caesarEncrypt(char, value(keyword[keywordIndex]));
+      if (keywordIndex < keywordLength) {
+        keywordIndex += 1;
+      } else {
+        keywordIndex = 0;
+      }
+    } else {
+      encrypted += char;
+    }
+  });
+
+  return encrypted;
+}
 
 // To find a given letter
 function value(letter) {
-  return alphabet.indexOf(letter.toLowerCase() + 1;
+// alphabet
+  var alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
+  letter = letter.toLowerCase();
+  console.log(letter);
+  return alphabet.indexOf(letter);
 }
 
 // Add the code from caesarEncrypt
@@ -89,3 +122,8 @@ function isLowerCase(letter) {
   return (letter.charCodeAt(0) >= 97 && letter.charCodeAt(0) <= 122);
 }
 
+// Tests
+console.log(vignereCipher("Pineapples don't go on pizzas!", 'meat')); // Bmnxmtpeqw dhz'x gh ar pbldal!
+console.log(vignereCipher('Hello World', 'Bye')); // Jdqnn bqqqf
+console.log(vignereCipher('Bye', 'Bye'));         // Dxj
+console.log(vignereCipher('Testing', 'Hi'));      // Bnarqwo
