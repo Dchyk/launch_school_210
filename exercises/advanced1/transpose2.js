@@ -16,7 +16,7 @@ function transpose(matrix) {
 
   for (row = 0; row < rowsToCalculate; row++) {
     for (column = 0; column < columnsToCalculate; column++) {
-      transposed[column].push(matrix[row][column]);
+      transposed[column].unshift(matrix[row][column]);
     }
   }
   return transposed;
@@ -37,9 +37,24 @@ function generateEmptyMatrix(n) {
 // Examples:
 
 
-transpose([[1, 2, 3, 4]]);            // [[1], [2], [3], [4]]
-transpose([[1], [2], [3], [4]]);      // [[1, 2, 3, 4]]
-transpose([[1]]);                     // [[1]]
+// transpose([[1, 2, 3, 4]]);            // [[1], [2], [3], [4]]
+// transpose([[1], [2], [3], [4]]);      // [[1, 2, 3, 4]]
+// transpose([[1]]);                     // [[1]]
 
-console.log(transpose([[1, 2, 3, 4, 5], [4, 3, 2, 1, 0], [3, 7, 8, 6, 2]]));
-// [[1, 4, 3], [2, 3, 7], [3, 2, 8], [4, 1, 6], [5, 0, 2]]
+// console.log(transpose([[1, 2, 3, 4, 5], [4, 3, 2, 1, 0], [3, 7, 8, 6, 2]]));
+// // [[1, 4, 3], [2, 3, 7], [3, 2, 8], [4, 1, 6], [5, 0, 2]]
+
+
+var matrix1 = [
+  [1, 5, 8],
+  [4, 7, 2],
+  [3, 9, 6],
+];
+
+var matrix2 = [
+  [3, 7, 4, 2],
+  [5, 1, 0, 8],
+];
+
+console.log(transpose(matrix1));
+console.log(transpose(matrix2));
